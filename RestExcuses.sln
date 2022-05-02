@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestExcuses", "RestExcuses\RestExcuses.csproj", "{4384FECD-80F8-4572-9442-ACA21474E87C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestExcuses", "RestExcuses\RestExcuses.csproj", "{4384FECD-80F8-4572-9442-ACA21474E87C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestExcusesTests", "RestExcusesTests\RestExcusesTests.csproj", "{CAD4D1E7-5703-4803-BEC0-FC8ECCFD255A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4384FECD-80F8-4572-9442-ACA21474E87C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4384FECD-80F8-4572-9442-ACA21474E87C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4384FECD-80F8-4572-9442-ACA21474E87C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAD4D1E7-5703-4803-BEC0-FC8ECCFD255A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD4D1E7-5703-4803-BEC0-FC8ECCFD255A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD4D1E7-5703-4803-BEC0-FC8ECCFD255A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD4D1E7-5703-4803-BEC0-FC8ECCFD255A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

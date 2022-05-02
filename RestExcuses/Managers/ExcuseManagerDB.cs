@@ -8,6 +8,10 @@ namespace RestExcuses.Managers
 {
     public class ExcuseManagerDB : IExcusesManager
     {
+        public ExcuseManagerDB()
+        {
+
+        }
         private ExcusesContext _context;
 
         public ExcuseManagerDB(ExcusesContext context)

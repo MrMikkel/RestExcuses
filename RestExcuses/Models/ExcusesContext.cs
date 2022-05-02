@@ -12,5 +12,10 @@ namespace RestExcuses.Models
 
         public DbSet<Excuses> Excuses { get; set; }
 
+        public ExcusesContext()
+        {
+
+        }
+
     }
 }
