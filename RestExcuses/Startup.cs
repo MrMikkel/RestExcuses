@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RestExcuses.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace RestExcuses
 {
@@ -32,6 +35,7 @@ namespace RestExcuses
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestExcuses", Version = "v1" });
             });
+            services.AddDbContext<ExcusesContext>(opt => opt.UseSqlServer(Secret.ConnectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
