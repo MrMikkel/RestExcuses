@@ -19,6 +19,8 @@ namespace RestExcuses
 {
     public class Startup
     {
+        public const string AllowAllPolicyName = "allowAll";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,21 +38,26 @@ namespace RestExcuses
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestExcuses", Version = "v1" });
             });
             services.AddDbContext<ExcusesContext>(opt => opt.UseSqlServer(Secret.ConnectionString));
+            services.AddCors(options => options.AddPolicy(AllowAllPolicyName,
+                builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
+            
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestExcuses v1"));
-            }
+            
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("allowAll");
 
             app.UseAuthorization();
 
