@@ -19,6 +19,7 @@ namespace RestExcuses
 {
     public class Startup
     {
+        // string til Cors
         public const string AllowAllPolicyName = "allowAll";
 
         public Startup(IConfiguration configuration)
@@ -37,7 +38,11 @@ namespace RestExcuses
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestExcuses", Version = "v1" });
             });
+
+            // connectionstring tilføget 
             services.AddDbContext<ExcusesContext>(opt => opt.UseSqlServer(Secret.ConnectionString));
+            
+            // Cors allow all policy
             services.AddCors(options => options.AddPolicy(AllowAllPolicyName,
                 builder => builder.AllowAnyOrigin()
                     .AllowAnyMethod()
@@ -56,7 +61,8 @@ namespace RestExcuses
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            
+            //Cors
             app.UseCors("allowAll");
 
             app.UseAuthorization();

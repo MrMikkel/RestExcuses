@@ -12,13 +12,16 @@ namespace RestExcuses.Managers
         {
 
         }
-        private ExcusesContext _context;
 
+        //initialize dbcontext
+        private ExcusesContext _context;
+        //initialize dbcontext
         public ExcuseManagerDB(ExcusesContext context)
         {
             _context = context;
         }
 
+        //get all excuses i databasen til en list
         public IEnumerable<Excuses> GetAll()
         {
             return _context.Excuses;

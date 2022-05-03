@@ -14,15 +14,16 @@ namespace RestExcuses.Controllers
     [ApiController]
     public class ExcuseController : ControllerBase
     {
-
+        //initialize manager classen
         private IExcusesManager _manager;
-
+        //innitialize dbcontext
         public ExcuseController(ExcusesContext context)
         {
             _manager = new ExcuseManagerDB(context);
         }
 
         // GET: api/<ExcuseController>
+        // get metode der gør brug af GetAll fra manager klassen
         [HttpGet]
         public IEnumerable<Excuses> Get()
         {
