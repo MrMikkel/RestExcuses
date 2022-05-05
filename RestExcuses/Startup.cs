@@ -39,7 +39,7 @@ namespace RestExcuses
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestExcuses", Version = "v1" });
             });
 
-            // connectionstring tilføget 
+            // connectionstring tilføjet 
             services.AddDbContext<ExcusesContext>(opt => opt.UseSqlServer(Secret.ConnectionString));
             
             // Cors allow all policy
