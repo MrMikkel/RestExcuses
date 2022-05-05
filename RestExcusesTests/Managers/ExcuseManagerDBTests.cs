@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RestExcuses.Models;
+using RestExcuses.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace RestExcuses.Managers.Tests
 {
@@ -20,14 +22,14 @@ namespace RestExcuses.Managers.Tests
 
         public ExcuseManagerDBTests()
         {
-
+            var OptionsBuilder = new DbContextOptionsBuilder<ExcusesContext>();
+            OptionsBuilder.UseSqlServer(Secret.ConnectionString);
+            ExcusesContext ex = new ExcusesContext(OptionsBuilder.Options);
+            _manager = new ExcuseManagerDB(ex);
         }
 
        
-        public ExcuseManagerDBTests(ExcusesContext context)
-        {
-            _manager = new ExcuseManagerDB(context);
-        }
+
 
         [TestMethod()]
         public void GetAllTest()
