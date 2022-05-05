@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace RestExcuses.Models
 {
-    public class Category
+    public class Movement
     {
-        public string category { get; set; }
+        public string movement { get; set; }
         private DateTime timeStamp { get; set; }
 
-        public Category()
+        public Movement()
         {
         }
 
-        public Category(string category)
+        public Movement(string movement)
         {
-            this.category = category;
+            this.movement = movement;
         }
     }
 }
