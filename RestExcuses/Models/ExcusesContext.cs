@@ -14,6 +14,7 @@ namespace RestExcuses.Models
         public ExcusesContext(DbContextOptions<ExcusesContext> options) : base(options){}
 
         public DbSet<Excuses> Excuses { get; set; }
+        public DbSet<Movement> Movement { get; set; }
 
         //tom constructer er nødvendig ellers virker det ikke
         public ExcusesContext()

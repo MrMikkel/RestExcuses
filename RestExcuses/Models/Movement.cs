@@ -14,9 +14,10 @@ namespace RestExcuses.Models
         {
         }
 
-        public Movement(string movement)
+        public Movement(string movement, DateTime timestamp)
         {
             this.movement = movement;
+            timeStamp = timestamp;
         }
     }
 }
