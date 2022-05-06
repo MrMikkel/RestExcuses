@@ -23,14 +23,14 @@ namespace RestExcuses.Managers
 
         public void postMovement(Movement move)
         {
-            Movement movement = new Movement(move.movement, DateTime.Now);
-            _context.Movement.Add(movement);
+            _context.Movement.Add(move);
             _context.SaveChanges();
         }
 
         public Movement GetLastEntry()
         {
-            return _context.Movement.Last();
+            IEnumerable<Movement> list = _context.Movement;
+            return list.Last();
         }
 
     }

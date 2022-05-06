@@ -10,10 +10,10 @@ namespace RestExcuses.Models
     public class Movement
     {
         [Key, Column(Order = 0)]
-        public string movement { get; set; }
-        
-        [Key, Column(Order = 1)]
         public DateTime timeStamp { get; set; }
+        [Key, Column(Order = 1)]
+        public string movement { get; set; }
+
 
         public Movement()
         {

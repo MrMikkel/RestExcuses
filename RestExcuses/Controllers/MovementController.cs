@@ -24,9 +24,9 @@ namespace RestExcuses.Controllers
 
         // GET: api/<MovementController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public Movement Get()
         {
-            return new string[] { "value1", "value2" };
+            return _manager.GetLastEntry();
         }
 
         // GET api/<MovementController>/5
