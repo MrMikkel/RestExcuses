@@ -21,7 +21,7 @@ namespace RestExcuses.Managers
             _context = context;
         }
 
-        public void postMovement(Movement move)
+        public void PostMovement(Movement move)
         {
             _context.Movement.Add(move);
             _context.SaveChanges();

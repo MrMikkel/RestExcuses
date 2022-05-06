@@ -40,7 +40,7 @@ namespace RestExcuses.Controllers
         [HttpPost]
         public void Post([FromBody] Movement value)
         {
-            _manager.postMovement(value);
+            _manager.PostMovement(value);
         }
 
         // PUT api/<MovementController>/5
