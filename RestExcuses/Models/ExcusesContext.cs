@@ -18,7 +18,7 @@ namespace RestExcuses.Models
             modelBuilder.Entity<Movement>().HasKey(p => new { p.movement, p.timeStamp });
         }
 
-        public DbSet<Excuses> Excuses { get; set; }
+        public DbSet<Excuse> Excuses { get; set; }
         public DbSet<Movement> Movement { get; set; }
 
         //tom constructer er nødvendig ellers virker det ikke

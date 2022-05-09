@@ -25,7 +25,7 @@ namespace RestExcuses.Controllers
         // GET: api/<ExcuseController>
         // get metode der gør brug af GetAll fra manager klassen
         [HttpGet]
-        public IEnumerable<Excuses> Get()
+        public IEnumerable<Excuse> Get()
         {
             return _manager.GetAll();
         }

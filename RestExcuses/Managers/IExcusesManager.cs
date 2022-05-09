@@ -9,6 +9,6 @@ namespace RestExcuses.Managers
     interface IExcusesManager
     {
         //interface er nødvendig hvis man skal bruge Ienumerable
-        IEnumerable<Excuses> GetAll();
+        IEnumerable<Excuse> GetAll();
     }
 }

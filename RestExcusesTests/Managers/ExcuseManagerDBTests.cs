@@ -36,7 +36,7 @@ namespace RestExcuses.Managers.Tests
         [TestMethod()]
         public void GetAllTest()
         {
-            IEnumerable<Excuses> ex = _manager.GetAll();
+            IEnumerable<Excuse> ex = _manager.GetAll();
             Assert.IsTrue(ex.Last().Excuse.Contains("3"));
         }
         [TestMethod()]

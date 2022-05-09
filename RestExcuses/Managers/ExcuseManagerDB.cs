@@ -22,7 +22,7 @@ namespace RestExcuses.Managers
         }
 
         //get all excuses i databasen til en list
-        public IEnumerable<Excuses> GetAll()
+        public IEnumerable<Excuse> GetAll()
         {
             return _context.Excuses;
         }
