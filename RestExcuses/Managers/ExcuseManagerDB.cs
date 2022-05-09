@@ -8,12 +8,13 @@ namespace RestExcuses.Managers
 {
     public class ExcuseManagerDB : IExcusesManager
     {
+        // tom constructor
         public ExcuseManagerDB()
         {
 
         }
 
-        //initialize dbcontext
+        // reference til dbcontext
         private ExcusesContext _context;
         //initialize dbcontext
         public ExcuseManagerDB(ExcusesContext context)
@@ -22,9 +23,25 @@ namespace RestExcuses.Managers
         }
 
         //get all excuses i databasen til en list
-        public IEnumerable<Excuses> GetAll()
+        public IEnumerable<Excuse> GetAll()
         {
             return _context.Excuses;
+        }
+
+        //tilføjer en excuse hvis den ikke er null
+        public bool PostExcuse(Excuse value)
+        {
+            value.Id = 0;
+            if (value.ExcuseValue!=null)
+            {
+                _context.Excuses.Add(value);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

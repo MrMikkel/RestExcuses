@@ -9,16 +9,18 @@ namespace RestExcuses.Models
     public class ExcusesContext : DbContext
     {
 
-        //database tilføjelse
+        // database tilføjelse
 
         public ExcusesContext(DbContextOptions<ExcusesContext> options) : base(options){}
 
+        // composite primary key tilføjes til databasen
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Movement>().HasKey(p => new { p.movement, p.timeStamp });
         }
 
-        public DbSet<Excuses> Excuses { get; set; }
+        // tabeller i db
+        public DbSet<Excuse> Excuses { get; set; }
         public DbSet<Movement> Movement { get; set; }
 
         //tom constructer er nødvendig ellers virker det ikke

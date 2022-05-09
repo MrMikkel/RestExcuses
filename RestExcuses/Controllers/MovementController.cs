@@ -14,19 +14,19 @@ namespace RestExcuses.Controllers
     [ApiController]
     public class MovementController : ControllerBase
     {
-
+        // reference til managerklassen 
         private MovementManagerDB _manager;
-        //innitialize dbcontext
-        public MovementController(ExcusesContext context)
+        // initialize dbcontext
+        public MovementController(ExcusesContext context) // dependency injection af dbcontext
         {
-            _manager = new MovementManagerDB(context);
+            _manager = new MovementManagerDB(context); // manager-klassen initaliseres med db
         }
 
         // GET: api/<MovementController>
         [HttpGet]
         public Movement Get()
         {
-            return _manager.GetLastEntry();
+            return _manager.GetLastEntry(); // returnerer et enkelt (det seneste) Movement-objekt
         }
 
         // GET api/<MovementController>/5
@@ -37,6 +37,7 @@ namespace RestExcuses.Controllers
         //}
 
         // POST api/<MovementController>
+        // opretter Movement
         [HttpPost]
         public void Post([FromBody] Movement value)
         {
