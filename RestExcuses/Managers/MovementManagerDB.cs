@@ -8,6 +8,7 @@ namespace RestExcuses.Managers
 {
     public class MovementManagerDB
     {
+
         public MovementManagerDB()
         {
 
@@ -29,8 +30,15 @@ namespace RestExcuses.Managers
 
         public Movement GetLastEntry()
         {
-            IEnumerable<Movement> list = _context.Movement;
-            return list.Last();
+            Movement item = _context.Movement.OrderBy(x => x.timeStamp).Last();
+            if ((DateTime.UtcNow - item.timeStamp).TotalSeconds < 60)
+            {
+                return item;
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }
