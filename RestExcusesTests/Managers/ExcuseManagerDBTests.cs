@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RestExcuses.Models;
-using RestExcuses.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace RestExcuses.Managers.Tests
@@ -16,9 +15,11 @@ namespace RestExcuses.Managers.Tests
     public class ExcuseManagerDBTests
     {
         private ExcuseManagerDB _manager;
+        private MovementManagerDB _movement;
 
-//        private IExcusesManager _manager;
-        
+
+        //        private IExcusesManager _manager;
+
 
         public ExcuseManagerDBTests()
         {
@@ -26,6 +27,7 @@ namespace RestExcuses.Managers.Tests
             OptionsBuilder.UseSqlServer(Secret.ConnectionString);
             ExcusesContext ex = new ExcusesContext(OptionsBuilder.Options);
             _manager = new ExcuseManagerDB(ex);
+            _movement = new MovementManagerDB(ex);
         }
 
        
@@ -36,6 +38,14 @@ namespace RestExcuses.Managers.Tests
         {
             IEnumerable<Excuses> ex = _manager.GetAll();
             Assert.IsTrue(ex.Last().Excuse.Contains("3"));
+        }
+        [TestMethod()]
+        public void PostAndGetLastTest()
+        {
+            Movement testMove = new Movement("test", DateTime.UtcNow);
+            _movement.PostMovement(testMove);
+            Movement m = _movement.GetLastEntry();
+            Assert.AreEqual(testMove.movement, m.movement);
         }
     }
 }

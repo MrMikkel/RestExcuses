@@ -21,12 +21,14 @@ namespace RestExcuses.Managers
             _context = context;
         }
 
+        // Post en bevæglese + timestamp fra proxy/ manuelt
         public void PostMovement(Movement move)
         {
             _context.Movement.Add(move);
             _context.SaveChanges();
         }
 
+        // henter den sidste entry i databasen
         public Movement GetLastEntry()
         {
             IEnumerable<Movement> list = _context.Movement;
