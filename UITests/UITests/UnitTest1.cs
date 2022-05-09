@@ -13,7 +13,9 @@ namespace UITests
     [TestClass]
     public class UnitTest1
     {
-        private static readonly string DriverDirectory = "C:\\Users\\syv22\\OneDrive\\Dokumenter\\1.Datamatiker_ting\\Web_drivers";
+        private static readonly string DriverDirectory = "C:\\Users\\syv22\\OneDrive\\Dokumenter\\Datamatiker ting\\Web_drivers";
+
+        private static readonly string url = "file:C:\\Users\\syv22\\OneDrive\\Dokumenter\\Datamatiker ting\\Eksamens projekt\\Html\\RestExcusesHtml\\index.html";
 
 
         private static IWebDriver _driver;
@@ -35,18 +37,37 @@ namespace UITests
         [TestMethod]
         public void TestGetAllExcuses()
         {
+            //WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            ////string url = "file:C:\\Users\\syv22\\OneDrive\\Dokumenter\\1.Datamatiker_ting\\3.SemesteV2\\EksamensprojektHtml\\RestExcusesHtml-master\\index.html";
+
+            //_driver.Navigate().GoToUrl(url);
+
+            //IWebElement buttonElement = _driver.FindElement(By.Id("getButton"));
+            //buttonElement.Click();
+            ////Thread.Sleep(2000);
+            ////IWebElement excuseList = _driver.FindElement(By.Id("getAllExcuses"));
+            
+            //IWebElement excuseList = wait.Until(d => d.FindElement(By.Id("getAllExcuses")));
+            //string text = excuseList.Text;
+            //Assert.IsTrue(text.Contains("3"));
+
+        }
+        [TestMethod]
+        public void TestPost()
+        {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-            string url = "file:C:\\Users\\syv22\\OneDrive\\Dokumenter\\1.Datamatiker_ting\\3.SemesteV2\\EksamensprojektHtml\\RestExcusesHtml-master\\index.html";
+            ////string url = "file:C:\\Users\\syv22\\OneDrive\\Dokumenter\\1.Datamatiker_ting\\3.SemesteV2\\EksamensprojektHtml\\RestExcusesHtml-master\\index.html";
+
             _driver.Navigate().GoToUrl(url);
 
-            IWebElement buttonElement = _driver.FindElement(By.Id("getButton"));
+            IWebElement indputElement = _driver.FindElement(By.Id("excuseInput"));
+            indputElement.SendKeys("new excuse");
+            IWebElement buttonElement = _driver.FindElement(By.Id("CreateButton"));
             buttonElement.Click();
-            //Thread.Sleep(2000);
-            //IWebElement excuseList = _driver.FindElement(By.Id("getAllExcuses"));
-            
+
             IWebElement excuseList = wait.Until(d => d.FindElement(By.Id("getAllExcuses")));
             string text = excuseList.Text;
-            Assert.IsTrue(text.Contains("3"));
+            Assert.IsTrue(text.Contains("new excuse"));
 
         }
     }
