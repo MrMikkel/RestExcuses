@@ -5,20 +5,20 @@ using System.Threading.Tasks;
 
 namespace RestExcuses.Models
 {
-    public class Excuse
+    public class ExcuseClass
     {
         public int Id { get; set; }
-        public string ExcuseValue { get; set; }
+        public string Excuse { get; set; }
 
-        public Excuse()
+        public ExcuseClass()
         {
 
         }
 
-        public Excuse(int id, string excuse)
+        public ExcuseClass(int id, string excuse)
         {
             Id = id;
-            ExcuseValue = excuse;
+            Excuse = excuse;
         }
     }
 }

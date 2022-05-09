@@ -36,15 +36,15 @@ namespace RestExcuses.Managers.Tests
         [TestMethod()]
         public void GetAllTest()
         {
-            IEnumerable<Excuse> ex = _manager.GetAll();
-            Assert.IsTrue(ex.Last().ExcuseValue.Contains("Test"));
+            IEnumerable<ExcuseClass> ex = _manager.GetAll();
+            Assert.IsTrue(ex.Last().Excuse.Contains("Test"));
         }
 
         [TestMethod()]
         public void PostExcuseTest()
         {
-            Excuse ex1 = new Excuse(1,"Test excuse");
-            Excuse ex2 = new Excuse(1, null);
+            ExcuseClass ex1 = new ExcuseClass(1,"Test excuse");
+            ExcuseClass ex2 = new ExcuseClass(1, null);
             bool postedExcuseTrue = _manager.PostExcuse(ex1);
             bool postedExcuseFalse = _manager.PostExcuse(ex2);
 

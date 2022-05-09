@@ -23,16 +23,16 @@ namespace RestExcuses.Managers
         }
 
         //get all excuses i databasen til en list
-        public IEnumerable<Excuse> GetAll()
+        public IEnumerable<ExcuseClass> GetAll()
         {
             return _context.Excuses;
         }
 
         //tilføjer en excuse hvis den ikke er null
-        public bool PostExcuse(Excuse value)
+        public bool PostExcuse(ExcuseClass value)
         {
             value.Id = 0;
-            if (value.ExcuseValue!=null)
+            if (value.Excuse!=null)
             {
                 _context.Excuses.Add(value);
                 _context.SaveChanges();

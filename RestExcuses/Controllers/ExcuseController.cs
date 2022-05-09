@@ -25,7 +25,7 @@ namespace RestExcuses.Controllers
         // GET: api/<ExcuseController>
         // get metode der gør brug af GetAll fra manager klassen
         [HttpGet]
-        public IEnumerable<Excuse> Get()
+        public IEnumerable<ExcuseClass> Get()
         {
             return _manager.GetAll();
         }
@@ -39,7 +39,7 @@ namespace RestExcuses.Controllers
 
         // POST api/<ExcuseController>
         [HttpPost]
-        public bool Post([FromBody] Excuse value)
+        public bool Post([FromBody] ExcuseClass value)
         {
             return _manager.PostExcuse(value);
         }

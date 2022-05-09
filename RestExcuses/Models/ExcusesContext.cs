@@ -20,7 +20,7 @@ namespace RestExcuses.Models
         }
 
         // tabeller i db
-        public DbSet<Excuse> Excuses { get; set; }
+        public DbSet<ExcuseClass> Excuses { get; set; }
         public DbSet<Movement> Movement { get; set; }
 
         //tom constructer er nødvendig ellers virker det ikke
