@@ -27,5 +27,21 @@ namespace RestExcuses.Managers
         {
             return _context.Excuses;
         }
+
+        //tilføjer en excuse hvis den ikke er null
+        public bool PostExcuse(Excuse value)
+        {
+            value.Id = 0;
+            if (value.ExcuseValue!=null)
+            {
+                _context.Excuses.Add(value);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

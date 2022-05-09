@@ -37,8 +37,21 @@ namespace RestExcuses.Managers.Tests
         public void GetAllTest()
         {
             IEnumerable<Excuse> ex = _manager.GetAll();
-            Assert.IsTrue(ex.Last().ExcuseValue.Contains("3"));
+            Assert.IsTrue(ex.Last().ExcuseValue.Contains("Test"));
         }
+
+        [TestMethod()]
+        public void PostExcuseTest()
+        {
+            Excuse ex1 = new Excuse(1,"Test excuse");
+            Excuse ex2 = new Excuse(1, null);
+            bool postedExcuseTrue = _manager.PostExcuse(ex1);
+            bool postedExcuseFalse = _manager.PostExcuse(ex2);
+
+            Assert.IsTrue(postedExcuseTrue);
+            Assert.IsFalse(postedExcuseFalse);
+        }
+
         [TestMethod()]
         public void PostAndGetLastTest()
         {

@@ -11,5 +11,6 @@ namespace RestExcuses.Managers
         // interface er nødvendig hvis man skal bruge Ienumerable
         // databasen returnerer IEnumerable, derfor skal vi tage i mod IEnumerable
         IEnumerable<Excuse> GetAll();
+        public bool PostExcuse(Excuse value);
     }
 }
