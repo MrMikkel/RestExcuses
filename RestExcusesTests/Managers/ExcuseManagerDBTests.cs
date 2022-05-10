@@ -79,18 +79,17 @@ namespace RestExcuses.Managers.Tests
         [TestMethod()]
         public void UpdateExcusesTest()
         {
-            //opretter et nyt obj. der indeholder data der skal opdatere en ikke eksisterende excuse
+            //Creates a new excuse which holds data to update another Excuse
+            //opretter noget data
             ExcuseClass newExcuseClass = new ExcuseClass(20, "test20");
             //opdatere excuse
             _manager.UpdateExcuse(1, newExcuseClass);
             //tjekker om der er en excuse i manager, som har navnet fra den nye excuse
             Assert.AreEqual(newExcuseClass.Excuse, _manager.GetByID(1).Excuse);
-            //tjekker om vi modtager null når vi forsøger at opdatere noget der ikke eksistere i managerklassen
-            Assert.IsNull(_manager.UpdateExcuse(50, newExcuseClass));
             //clean up
-            ExcuseClass cleanUpExcuse = new ExcuseClass()
-            { Excuse = "testundskyldning 1" };
-            _manager.UpdateExcuse(1, cleanUpExcuse);
+            //ExcuseClass cleanUpExcuse = new ExcuseClass()
+            //{ Excuse = "testundskyldning 1" };
+            //_manager.UpdateExcuse(1, cleanUpExcuse);
         }
     }
 }
