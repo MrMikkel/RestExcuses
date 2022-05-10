@@ -28,6 +28,12 @@ namespace RestExcuses.Managers
             return _context.Excuses;
         }
 
+        //get by id
+        public ExcuseClass GetByID(int id)
+        {
+            return _context.Excuses.Find(id);
+        }
+
         //tilføjer en excuse hvis den ikke er null
         public bool PostExcuse(ExcuseClass value)
         {
@@ -42,6 +48,20 @@ namespace RestExcuses.Managers
             {
                 return false;
             }
+        }
+        public ExcuseClass UpdateExcuse(int id, ExcuseClass update)
+        {
+            //finder id'et som skal opdateres, med den id
+            //anvender getbyid metoden til at optimere denne metode 
+            //eller ændre hvordan man finder et specifikt excuse
+            ExcuseClass excuseToBeUpdated = GetByID(id);
+
+            excuseToBeUpdated.Excuse = update.Excuse;
+
+            //gemme den opdaterede excuse i db, kalder vi savechanges
+            _context.SaveChanges();
+            //returner den opdaterede excuse
+            return excuseToBeUpdated;
         }
     }
 }
