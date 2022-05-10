@@ -55,18 +55,19 @@ namespace UITests
         public void TestPost()
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-            ////string url = "file:C:\\Users\\syv22\\OneDrive\\Dokumenter\\1.Datamatiker_ting\\3.SemesteV2\\EksamensprojektHtml\\RestExcusesHtml-master\\index.html";
 
             _driver.Navigate().GoToUrl(url);
-
-            IWebElement indputElement = _driver.FindElement(By.Id("excuseInput"));
-            indputElement.SendKeys("new excuse");
+            IWebElement buttonElement1 = wait.Until(d => d.FindElement(By.Id("switchButton")));
+            buttonElement1.Click();
+            IWebElement indputElement = wait.Until(d => d.FindElement(By.Id("excuseInput")));
+            indputElement.SendKeys("new test");
             IWebElement buttonElement = _driver.FindElement(By.Id("CreateButton"));
             buttonElement.Click();
 
             IWebElement excuseList = wait.Until(d => d.FindElement(By.Id("getAllExcuses")));
+            Thread.Sleep(2000);
             string text = excuseList.Text;
-            Assert.IsTrue(text.Contains("new excuse"));
+            Assert.IsTrue(text.Contains("new test"));
 
         }
         [TestMethod]
@@ -74,6 +75,10 @@ namespace UITests
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             _driver.Navigate().GoToUrl(url);
+
+
+            IWebElement buttonElement1 = wait.Until(d => d.FindElement(By.Id("switchButton")));
+            buttonElement1.Click();
 
             IWebElement inputElement = _driver.FindElement(By.Id("updateIdInput"));
             inputElement.SendKeys("5");
@@ -85,7 +90,10 @@ namespace UITests
             buttonElement.Click();
 
             IWebElement excuseList = wait.Until(d => d.FindElement(By.Id("getAllExcuses")));
+            Thread.Sleep(2000); //den er nødt til at vente på at excuses loader før den smider det i en string
+
             string text = excuseList.Text;
+            
             Assert.IsTrue(text.Contains("UI Test-excuse"));
         }
     }
