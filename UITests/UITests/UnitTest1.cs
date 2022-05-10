@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -70,5 +69,25 @@ namespace UITests
             Assert.IsTrue(text.Contains("new excuse"));
 
         }
+        [TestMethod]
+        public void TestUpdate()
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            _driver.Navigate().GoToUrl(url);
+
+            IWebElement inputElement = _driver.FindElement(By.Id("updateIdInput"));
+            inputElement.SendKeys("5");
+
+            IWebElement excuseUpdate = _driver.FindElement(By.Id("updateExcuseInput"));
+            excuseUpdate.SendKeys("UI Test-excuse");
+            
+            IWebElement buttonElement = _driver.FindElement(By.Id("UpdateButton"));
+            buttonElement.Click();
+
+            IWebElement excuseList = wait.Until(d => d.FindElement(By.Id("getAllExcuses")));
+            string text = excuseList.Text;
+            Assert.IsTrue(text.Contains("UI Test-excuse"));
+        }
     }
+    
 }
