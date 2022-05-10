@@ -42,6 +42,13 @@ namespace RestExcuses.Controllers
                 return NotFound("No such excuse with id: " + id);
             return Ok(result);
         }
+        // GET api/<ExcuseController>/5
+        [HttpGet("/api/Excuse/random")]
+        public ExcuseClass GetRandom()
+        {
+            return  _manager.GetRandomExcuse();
+            
+        }
 
         // POST api/<ExcuseController>
         [HttpPost]
@@ -54,25 +61,26 @@ namespace RestExcuses.Controllers
         // PUT api/<ExcuseController>/5
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpPut("{id}")]
+        //todo look below
+        [HttpPut/*("{id}")*/]
         //sender id og excuse obj. til manager for at opdater vædierne 
         //id i obj. bliver ignoredet, retuner null hvis ingen excuse har den id
         //{id} annotation denne gør at URL til obj. forventer en int 
         // FromBody i parameter denne forventer Json body fra requesten 
-        public ActionResult<ExcuseClass> Put(int id, [FromBody] ExcuseClass updateExcuseClass)
+        public ActionResult<ExcuseClass> Put(/*int id,*/ [FromBody] ExcuseClass updateExcuseClass)
         {
-            ExcuseClass result = _manager.UpdateExcuse(id, updateExcuseClass);
+            ExcuseClass result = _manager.UpdateExcuse(/*id,*/ updateExcuseClass);
             if (result == null) 
-                return NotFound("No such excuse with id: " + id);
+                return NotFound("No such excuse with id: " + updateExcuseClass.Id);
             return Ok(result);
-
-
         }
+        //todo above
 
-        //// DELETE api/<ExcuseController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        // DELETE api/<ExcuseController>/5
+        [HttpDelete("{id}")]
+        public bool Delete(int id)
+        {
+            return _manager.DeleteExcuse(id);
+        }
     }
 }

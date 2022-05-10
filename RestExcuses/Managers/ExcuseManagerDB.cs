@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -49,12 +50,15 @@ namespace RestExcuses.Managers
                 return false;
             }
         }
-        public ExcuseClass UpdateExcuse(int id, ExcuseClass update)
+        public ExcuseClass UpdateExcuse(/*int id,*/ ExcuseClass update)
         {
             //finder id'et som skal opdateres, med den id
             //anvender getbyid metoden til at optimere denne metode 
             //eller ændre hvordan man finder et specifikt excuse
-            ExcuseClass excuseToBeUpdated = GetByID(id);
+            //ExcuseClass excuseToBeUpdated = GetByID(update.Id);
+            //todo
+            ExcuseClass excuseToBeUpdated = _context.Excuses.Find(update.Id);
+            //todo
 
             excuseToBeUpdated.Excuse = update.Excuse;
 
@@ -74,6 +78,34 @@ namespace RestExcuses.Managers
             _context.SaveChanges();
             //returner den opdaterede excuse
             return excuseToBeUpdated;
+        }
+
+        public bool DeleteExcuse(int tbd)
+        {
+            //ExcuseClass excuseToBeDeleted = GetByID(tbd.Id);
+            ExcuseClass excuseToBeDeleted = _context.Excuses.Find(tbd);
+
+            if (excuseToBeDeleted != null)
+            {
+                _context.Excuses.Remove(excuseToBeDeleted);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public ExcuseClass GetRandomExcuse()
+        {
+            Random rand = new Random();
+            int count = _context.Excuses.Count();
+            int randCount = rand.Next(0, count);
+            IEnumerable<ExcuseClass> ExcuseList = _context.Excuses;
+            ExcuseClass randExcuse = ExcuseList.ElementAt(randCount);
+            return randExcuse;
         }
     }
 }

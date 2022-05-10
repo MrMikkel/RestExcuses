@@ -96,6 +96,27 @@ namespace UITests
             
             Assert.IsTrue(text.Contains("UI Test-excuse"));
         }
+        [TestMethod]
+        public void TestDelete()
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+
+            _driver.Navigate().GoToUrl(url);
+            IWebElement buttonElement1 = wait.Until(d => d.FindElement(By.Id("switchButton")));
+            buttonElement1.Click();
+            IWebElement indputElement = wait.Until(d => d.FindElement(By.Id("excuseInput")));
+            indputElement.SendKeys("new test");
+            IWebElement buttonElement = _driver.FindElement(By.Id("CreateButton"));
+            buttonElement.Click();
+
+            IWebElement excuseList = wait.Until(d => d.FindElement(By.Id("getAllExcuses")));
+            Thread.Sleep(2000);
+            string text = excuseList.Text;
+            Assert.IsTrue(text.Contains("new test"));
+
+            IWebElement deleteButton = wait.Until(d => d.FindElement(By.Id("getAllExcuses")));
+
+        }
     }
     
 }

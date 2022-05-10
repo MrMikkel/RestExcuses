@@ -65,11 +65,11 @@ namespace RestExcuses.Managers.Tests
         {
             //Creates a new excuse which holds data to update another Excuse
             //opretter noget data
-            ExcuseClass newExcuseClass = new ExcuseClass(20, "test20");
+            ExcuseClass newExcuseClass = new ExcuseClass(10, "test10");
             //opdatere excuse
             //id nr 1, skal nu have de værdier fra den nyoprettede excuse
             //overskrevet id 1, med ''test20'', værdier fra nr 2 parameter
-            _manager.UpdateExcuse(1, newExcuseClass);
+            _manager.UpdateExcuse(newExcuseClass);
             //tjekker om der er en excuse i manager, som har navnet fra den nye excuse
             Assert.AreEqual(newExcuseClass.Excuse, _manager.GetByID(1).Excuse);
             //clean up
