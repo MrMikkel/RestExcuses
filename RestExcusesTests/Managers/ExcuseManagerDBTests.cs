@@ -60,5 +60,37 @@ namespace RestExcuses.Managers.Tests
             Movement m = _movement.GetLastEntry();
             Assert.AreEqual(testMove.movement, m.movement);
         }
+        //public void TestUpdate()
+        //{
+        //    Creates a new Item which holds data to update another Item
+        //    Item newItem = new Item(14, "TestItem", 3, 4);
+        //    Updates the Item
+        //    _manager.Update(1, newItem);
+        //    Checks that Item in the manager has the name from the newItem
+        //    Assert.AreEqual(newItem.Name, _manager.GetById(1).Name);
+
+        //    Checks that we receive a null when trying to update something not existing in the manager
+        //    Assert.IsNull(_manager.Update(4, newItem));
+
+        //    Cleans up
+        //    Item cleanUpItem = new Item() { Name = "Book about C#", ItemQuality = 300, Quantity = 10 };
+        //    _manager.Update(1, cleanUpItem);
+        //}
+        [TestMethod()]
+        public void UpdateExcusesTest()
+        {
+            //opretter et nyt obj. der indeholder data der skal opdatere en ikke eksisterende excuse
+            ExcuseClass newExcuseClass = new ExcuseClass(20, "test20");
+            //opdatere excuse
+            _manager.UpdateExcuse(1, newExcuseClass);
+            //tjekker om der er en excuse i manager, som har navnet fra den nye excuse
+            Assert.AreEqual(newExcuseClass.Excuse, _manager.GetByID(1).Excuse);
+            //tjekker om vi modtager null når vi forsøger at opdatere noget der ikke eksistere i managerklassen
+            Assert.IsNull(_manager.UpdateExcuse(50, newExcuseClass));
+            //clean up
+            ExcuseClass cleanUpExcuse = new ExcuseClass()
+            { Excuse = "testundskyldning 1" };
+            _manager.UpdateExcuse(1, cleanUpExcuse);
+        }
     }
 }
