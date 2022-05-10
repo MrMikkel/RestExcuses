@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using RestExcuses.Managers;
 using RestExcuses.Models;
 
@@ -31,11 +32,16 @@ namespace RestExcuses.Controllers
         }
 
         // GET api/<ExcuseController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        [HttpGet("{id}")]
+        //hente en specifik excuse fra manager listen, 
+        //retuner null hvis obj. ikke er fundet  
+        public ActionResult<ExcuseClass> Get(int id)
+        {
+            ExcuseClass result = _manager.GetByID(id);
+            if (result == null)
+                return NotFound("No such excuse with id: " + id);
+            return Ok(result);
+        }
 
         // POST api/<ExcuseController>
         [HttpPost]
@@ -44,11 +50,24 @@ namespace RestExcuses.Controllers
             return _manager.PostExcuse(value);
         }
 
+
         // PUT api/<ExcuseController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpPut("{id}")]
+        //sender id og excuse obj. til manager for at opdater vædierne 
+        //id i obj. bliver ignoredet, retuner null hvis ingen excuse har den id
+        //{id} annotation denne gør at URL til obj. forventer en int 
+        // FromBody i parameter denne forventer Json body fra requesten 
+        public ActionResult<ExcuseClass> Put(int id, [FromBody] ExcuseClass updateExcuseClass)
+        {
+            ExcuseClass result = _manager.UpdateExcuse(id, updateExcuseClass);
+            if (result == null) 
+                return NotFound("No such excuse with id: " + id);
+            return Ok(result);
+
+
+        }
 
         //// DELETE api/<ExcuseController>/5
         //[HttpDelete("{id}")]
