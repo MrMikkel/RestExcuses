@@ -38,7 +38,7 @@ namespace RestExcuses.Managers
         public bool PostExcuse(ExcuseClass value)
         {
             value.Id = 0;
-            if (value.Excuse!=null)
+            if (value.Excuse != null)
             {
                 _context.Excuses.Add(value);
                 _context.SaveChanges();
@@ -58,6 +58,18 @@ namespace RestExcuses.Managers
 
             excuseToBeUpdated.Excuse = update.Excuse;
 
+            //gemme den opdaterede excuse i db, kalder vi savechanges
+            _context.SaveChanges();
+            //returner den opdaterede excuse
+            return excuseToBeUpdated;
+        }
+
+        //overload method, med en string (så man ikke behøver at initialisere et obj.)
+        public ExcuseClass UpdateExcuse(int id, string updateTheExcuse)
+        {
+            ExcuseClass excuseToBeUpdated = GetByID(id);
+
+            excuseToBeUpdated.Excuse = updateTheExcuse;
             //gemme den opdaterede excuse i db, kalder vi savechanges
             _context.SaveChanges();
             //returner den opdaterede excuse

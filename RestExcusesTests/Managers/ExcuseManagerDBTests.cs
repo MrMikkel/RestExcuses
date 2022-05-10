@@ -67,9 +67,26 @@ namespace RestExcuses.Managers.Tests
             //opretter noget data
             ExcuseClass newExcuseClass = new ExcuseClass(20, "test20");
             //opdatere excuse
+            //id nr 1, skal nu have de værdier fra den nyoprettede excuse
+            //overskrevet id 1, med ''test20'', værdier fra nr 2 parameter
             _manager.UpdateExcuse(1, newExcuseClass);
             //tjekker om der er en excuse i manager, som har navnet fra den nye excuse
             Assert.AreEqual(newExcuseClass.Excuse, _manager.GetByID(1).Excuse);
+            //clean up
+            //ExcuseClass cleanUpExcuse = new ExcuseClass()
+            //{ Excuse = "testundskyldning 1" };
+            //_manager.UpdateExcuse(1, cleanUpExcuse);
+        }
+        //tester den med string
+        [TestMethod()]
+        public void UpdateExcusesTestString()
+        {
+            //opdatere excuse, via string
+            //id nr 1, skal nu have de værdier fra den nyoprettede excuse
+            //overskrevet id 1, med ''test20'', værdier fra nr 2 parameter
+            _manager.UpdateExcuse(4, "Virker denne test?");
+            //tjekker om der er en excuse i manager, som har navnet fra den nye excuse
+            Assert.AreEqual("Virker denne test?", _manager.GetByID(4).Excuse);
             //clean up
             //ExcuseClass cleanUpExcuse = new ExcuseClass()
             //{ Excuse = "testundskyldning 1" };
