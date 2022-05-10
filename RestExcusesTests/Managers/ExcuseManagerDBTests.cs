@@ -60,22 +60,6 @@ namespace RestExcuses.Managers.Tests
             Movement m = _movement.GetLastEntry();
             Assert.AreEqual(testMove.movement, m.movement);
         }
-        //public void TestUpdate()
-        //{
-        //    Creates a new Item which holds data to update another Item
-        //    Item newItem = new Item(14, "TestItem", 3, 4);
-        //    Updates the Item
-        //    _manager.Update(1, newItem);
-        //    Checks that Item in the manager has the name from the newItem
-        //    Assert.AreEqual(newItem.Name, _manager.GetById(1).Name);
-
-        //    Checks that we receive a null when trying to update something not existing in the manager
-        //    Assert.IsNull(_manager.Update(4, newItem));
-
-        //    Cleans up
-        //    Item cleanUpItem = new Item() { Name = "Book about C#", ItemQuality = 300, Quantity = 10 };
-        //    _manager.Update(1, cleanUpItem);
-        //}
         [TestMethod()]
         public void UpdateExcusesTest()
         {
