@@ -118,6 +118,24 @@ namespace UITests
             deleteButton.Click();
 
         }
+
+        [TestMethod]
+        public void TestHistory()
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+
+            _driver.Navigate().GoToUrl(url);
+
+            IWebElement buttonElement = wait.Until(d => d.FindElement(By.Id("showCatButton")));
+            buttonElement.Click();
+
+            IWebElement excusecount = wait.Until(d => d.FindElement(By.Id("showCategory")));
+            Thread.Sleep(2000);
+            string text = excusecount.Text;
+            Assert.IsTrue(text.Contains("Work"));
+
+
+        }
     }
     
 }
