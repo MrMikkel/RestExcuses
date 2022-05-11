@@ -33,7 +33,7 @@ namespace RestExcuses.Controllers
         [HttpGet("/api/Movements/topcategories")]
         public IOrderedEnumerable<CategoryCount> GetTopCategories()
         {
-            return _manager.GetMostUsed();
+            return _manager.GetHistory();
         }
 
         // POST api/<MovementController>
