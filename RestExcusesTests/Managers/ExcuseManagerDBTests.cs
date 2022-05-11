@@ -109,8 +109,17 @@ namespace RestExcuses.Managers.Tests
         [TestMethod()]
         public void GetHistoryTest()
         {
-            IOrderedEnumerable<CategoryCount> result = _movements.GetHistory();
-            Assert.Any
+            IOrderedEnumerable<CategoryCount> orderedList = _movements.GetHistory();
+            Assert.IsTrue(orderedList.Any());
+            Assert.IsTrue(orderedList.Count()==5);
+            List<CategoryCount> result = orderedList.ToList();
+            for (int i = 0; i < result.Count()-2; i++)
+            {
+                Assert.IsTrue(result[i].Count>result[i+1].Count);
+            }
+
+
+
         }
     }
 }
