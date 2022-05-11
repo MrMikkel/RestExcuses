@@ -12,9 +12,9 @@ namespace UITests
     [TestClass]
     public class UnitTest1
     {
-        private static readonly string DriverDirectory = "C:\\Users\\syv22\\OneDrive\\Dokumenter\\Datamatiker ting\\Web_drivers";
+        private static readonly string DriverDirectory = "C:\\Users\\syv22\\OneDrive\\Dokumenter\\1.Datamatiker_ting\\Web_drivers";
 
-        private static readonly string url = "file:C:\\Users\\syv22\\OneDrive\\Dokumenter\\Datamatiker ting\\Eksamens projekt\\Html\\RestExcusesHtml\\index.html";
+        private static readonly string url = "file:C:\\Users\\syv22\\OneDrive\\Dokumenter\\1.Datamatiker_ting\\3.SemesteV2\\EksamensprojektHtml\\RestExcusesHtml-master\\RestExcusesHtml\\index.html";
 
 
         private static IWebDriver _driver;
@@ -114,7 +114,8 @@ namespace UITests
             string text = excuseList.Text;
             Assert.IsTrue(text.Contains("new test"));
 
-            IWebElement deleteButton = wait.Until(d => d.FindElement(By.Id("getAllExcuses")));
+            IWebElement deleteButton = wait.Until(d => d.FindElement(By.Id("1")));
+            deleteButton.Click();
 
         }
     }

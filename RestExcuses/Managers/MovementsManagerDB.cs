@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using RestExcuses.Models;
 
@@ -42,6 +43,27 @@ namespace RestExcuses.Managers
                 return null;
             }
         }
+
+        public IOrderedEnumerable<CategoryCount> GetMostUsed()
+        {
+            int useCountRight = _context.Movement.Count(x => x.movement == "right");
+            int useCountLeft = _context.Movement.Count(x => x.movement == "left");
+            int useCountFront = _context.Movement.Count(x => x.movement == "front");
+            int useCountBack = _context.Movement.Count(x => x.movement == "back");
+            int useCountShake = _context.Movement.Count(x => x.movement == "shake");
+
+            List<CategoryCount> categoryList = new List<CategoryCount>();
+            categoryList.Add(new CategoryCount(useCountRight,"Family"));
+            categoryList.Add(new CategoryCount(useCountLeft, "Work"));
+            categoryList.Add(new CategoryCount(useCountFront, "College"));
+            categoryList.Add(new CategoryCount(useCountBack, "Party"));
+            categoryList.Add(new CategoryCount(useCountShake, "Self generated"));
+
+            IOrderedEnumerable<CategoryCount> final = categoryList.OrderByDescending(c => c.Count);
+
+            return final;
+        }
+
 
     }
 }

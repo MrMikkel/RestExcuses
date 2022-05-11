@@ -13,7 +13,7 @@ namespace RestExcuses.Managers
         IEnumerable<ExcuseClass> GetAll();
         public ExcuseClass GetByID(int id);
         public ExcuseClass PostExcuse(ExcuseClass value);
-        public ExcuseClass UpdateExcuse(/*int id,*/ ExcuseClass update);
+        public ExcuseClass UpdateExcuse(ExcuseClass update);
         public bool DeleteExcuse(int tbd);
         public ExcuseClass GetRandomExcuse();
     }

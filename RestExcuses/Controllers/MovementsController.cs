@@ -29,12 +29,12 @@ namespace RestExcuses.Controllers
             return _manager.GetLastEntry(); // returnerer et enkelt (det seneste) Movement-objekt
         }
 
-        // GET api/<MovementController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        //GET api/<MovementController>/5
+        [HttpGet("/api/Movements/topcategories")]
+        public IOrderedEnumerable<CategoryCount> GetTopCategories()
+        {
+            return _manager.GetMostUsed();
+        }
 
         // POST api/<MovementController>
         // opretter Movement
