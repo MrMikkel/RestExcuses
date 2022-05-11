@@ -44,21 +44,25 @@ namespace RestExcuses.Managers
             }
         }
 
-        public IOrderedEnumerable<CategoryCount> GetMostUsed()
+        public IOrderedEnumerable<CategoryCount> GetHistory() // tæller bevægelser op og returnerer en sorteret liste med dem alle sammen i
         {
+            // optælling
             int useCountRight = _context.Movement.Count(x => x.movement == "right");
             int useCountLeft = _context.Movement.Count(x => x.movement == "left");
             int useCountFront = _context.Movement.Count(x => x.movement == "front");
             int useCountBack = _context.Movement.Count(x => x.movement == "back");
             int useCountShake = _context.Movement.Count(x => x.movement == "shake");
 
+            // liste
             List<CategoryCount> categoryList = new List<CategoryCount>();
+            // tilføjelse til liste
             categoryList.Add(new CategoryCount(useCountRight,"Family"));
             categoryList.Add(new CategoryCount(useCountLeft, "Work"));
             categoryList.Add(new CategoryCount(useCountFront, "College"));
             categoryList.Add(new CategoryCount(useCountBack, "Party"));
             categoryList.Add(new CategoryCount(useCountShake, "Self generated"));
 
+            // sortering af liste
             IOrderedEnumerable<CategoryCount> final = categoryList.OrderByDescending(c => c.Count);
 
             return final;
