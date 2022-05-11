@@ -13,14 +13,14 @@ namespace RestExcuses.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExcuseController : ControllerBase
+    public class ExcusesController : ControllerBase
     {
         //initialize manager classen
         private IExcusesManager _manager;
         //innitialize dbcontext
-        public ExcuseController(ExcusesContext context)
+        public ExcusesController(ExcusesContext context)
         {
-            _manager = new ExcuseManagerDB(context);
+            _manager = new ExcusesManagerDB(context);
         }
 
         // GET: api/<ExcuseController>
@@ -52,7 +52,7 @@ namespace RestExcuses.Controllers
 
         // POST api/<ExcuseController>
         [HttpPost]
-        public bool Post([FromBody] ExcuseClass value)
+        public ExcuseClass Post([FromBody] ExcuseClass value)
         {
             return _manager.PostExcuse(value);
         }

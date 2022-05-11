@@ -14,8 +14,10 @@ namespace RestExcuses.Managers.Tests
     [TestClass()]
     public class ExcuseManagerDBTests
     {
-        private ExcuseManagerDB _manager;
-        private MovementManagerDB _movement;
+        private ExcusesManagerDB _manager;
+        private MovementsManagerDB _movements;
+        //initialize dbcontext
+        
 
 
         //        private IExcusesManager _manager;
@@ -26,8 +28,8 @@ namespace RestExcuses.Managers.Tests
             var OptionsBuilder = new DbContextOptionsBuilder<ExcusesContext>();
             OptionsBuilder.UseSqlServer(Secret.ConnectionString);
             ExcusesContext ex = new ExcusesContext(OptionsBuilder.Options);
-            _manager = new ExcuseManagerDB(ex);
-            _movement = new MovementManagerDB(ex);
+            _manager = new ExcusesManagerDB(ex);
+            _movements = new MovementsManagerDB(ex);
         }
 
        
@@ -43,21 +45,21 @@ namespace RestExcuses.Managers.Tests
         [TestMethod()]
         public void PostExcuseTest()
         {
-            ExcuseClass ex1 = new ExcuseClass(1,"Test excuse");
+            ExcuseClass ex1 = new ExcuseClass(1, "Test excuse");
             ExcuseClass ex2 = new ExcuseClass(1, null);
-            bool postedExcuseTrue = _manager.PostExcuse(ex1);
-            bool postedExcuseFalse = _manager.PostExcuse(ex2);
+            ExcuseClass postedExcuseTrue = _manager.PostExcuse(ex1);
+            ExcuseClass postedExcuseFalse = _manager.PostExcuse(ex2);
 
-            Assert.IsTrue(postedExcuseTrue);
-            Assert.IsFalse(postedExcuseFalse);
+            Assert.IsTrue(postedExcuseTrue.Excuse==ex1.Excuse);
+            Assert.IsTrue(postedExcuseFalse == null);
         }
 
         [TestMethod()]
         public void PostAndGetLastTest()
         {
             Movement testMove = new Movement("test", DateTime.UtcNow);
-            _movement.PostMovement(testMove);
-            Movement m = _movement.GetLastEntry();
+            _movements.PostMovement(testMove);
+            Movement m = _movements.GetLastEntry();
             Assert.AreEqual(testMove.movement, m.movement);
         }
         [TestMethod()]
@@ -71,7 +73,7 @@ namespace RestExcuses.Managers.Tests
             //overskrevet id 1, med ''test20'', værdier fra nr 2 parameter
             _manager.UpdateExcuse(newExcuseClass);
             //tjekker om der er en excuse i manager, som har navnet fra den nye excuse
-            Assert.AreEqual(newExcuseClass.Excuse, _manager.GetByID(1).Excuse);
+            Assert.AreEqual(newExcuseClass.Excuse, _manager.GetByID(10).Excuse);
             //clean up
             //ExcuseClass cleanUpExcuse = new ExcuseClass()
             //{ Excuse = "testundskyldning 1" };
@@ -91,6 +93,18 @@ namespace RestExcuses.Managers.Tests
             //ExcuseClass cleanUpExcuse = new ExcuseClass()
             //{ Excuse = "testundskyldning 1" };
             //_manager.UpdateExcuse(1, cleanUpExcuse);
+        }
+
+        [TestMethod()]
+        public void DeleteExcusesTest()
+        {
+            ExcuseClass ex1 = new ExcuseClass(1, "delete test");
+            ExcuseClass postedExcuse = _manager.PostExcuse(ex1);
+            Assert.IsTrue(postedExcuse.Excuse==ex1.Excuse);
+
+            bool ex2 = _manager.DeleteExcuse(postedExcuse.Id);
+
+            Assert.IsTrue(ex2);
         }
     }
 }

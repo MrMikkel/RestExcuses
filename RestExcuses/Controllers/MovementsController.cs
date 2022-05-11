@@ -12,14 +12,14 @@ namespace RestExcuses.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovementController : ControllerBase
+    public class MovementsController : ControllerBase
     {
         // reference til managerklassen 
-        private MovementManagerDB _manager;
+        private MovementsManagerDB _manager;
         // initialize dbcontext
-        public MovementController(ExcusesContext context) // dependency injection af dbcontext
+        public MovementsController(ExcusesContext context) // dependency injection af dbcontext
         {
-            _manager = new MovementManagerDB(context); // manager-klassen initaliseres med db
+            _manager = new MovementsManagerDB(context); // manager-klassen initaliseres med db
         }
 
         // GET: api/<MovementController>

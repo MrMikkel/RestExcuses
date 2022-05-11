@@ -6,10 +6,10 @@ using RestExcuses.Models;
 
 namespace RestExcuses.Managers
 {
-    public class MovementManagerDB
+    public class MovementsManagerDB
     {
         // tom constructor
-        public MovementManagerDB()
+        public MovementsManagerDB()
         {
 
         }
@@ -17,7 +17,7 @@ namespace RestExcuses.Managers
         // reference til dbcontext
         private ExcusesContext _context;
         // initialize dbcontext
-        public MovementManagerDB(ExcusesContext context) // dependency injection
+        public MovementsManagerDB(ExcusesContext context) // dependency injection
         {
             _context = context;
         }

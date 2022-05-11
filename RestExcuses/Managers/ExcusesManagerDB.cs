@@ -7,10 +7,10 @@ using RestExcuses.Models;
 
 namespace RestExcuses.Managers
 {
-    public class ExcuseManagerDB : IExcusesManager
+    public class ExcusesManagerDB : IExcusesManager
     {
         // tom constructor
-        public ExcuseManagerDB()
+        public ExcusesManagerDB()
         {
 
         }
@@ -18,7 +18,7 @@ namespace RestExcuses.Managers
         // reference til dbcontext
         private ExcusesContext _context;
         //initialize dbcontext
-        public ExcuseManagerDB(ExcusesContext context)
+        public ExcusesManagerDB(ExcusesContext context)
         {
             _context = context;
         }
@@ -36,29 +36,27 @@ namespace RestExcuses.Managers
         }
 
         //tilføjer en excuse hvis den ikke er null
-        public bool PostExcuse(ExcuseClass value)
+        public ExcuseClass PostExcuse(ExcuseClass value)
         {
             value.Id = 0;
             if (value.Excuse != null)
             {
                 _context.Excuses.Add(value);
                 _context.SaveChanges();
-                return true;
+                
+                return value;
             }
             else
             {
-                return false;
+                return null;
             }
         }
-        public ExcuseClass UpdateExcuse(/*int id,*/ ExcuseClass update)
+        public ExcuseClass UpdateExcuse(ExcuseClass update)
         {
             //finder id'et som skal opdateres, med den id
             //anvender getbyid metoden til at optimere denne metode 
             //eller ændre hvordan man finder et specifikt excuse
-            //ExcuseClass excuseToBeUpdated = GetByID(update.Id);
-            //todo
             ExcuseClass excuseToBeUpdated = _context.Excuses.Find(update.Id);
-            //todo
 
             excuseToBeUpdated.Excuse = update.Excuse;
 
