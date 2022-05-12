@@ -95,7 +95,7 @@ namespace RestExcuses.Managers
             }
 
         }
-
+        //henter en tilfældig custom undskyldning
         public ExcuseClass GetRandomExcuse()
         {
             Random rand = new Random();
