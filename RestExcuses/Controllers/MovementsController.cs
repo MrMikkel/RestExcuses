@@ -50,10 +50,11 @@ namespace RestExcuses.Controllers
         //{
         //}
 
-        // DELETE api/<MovementController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        //DELETE api/<MovementController>/5
+        [HttpDelete]
+        public void Delete()
+        {
+             _manager.DeleteAllMovements();
+        }
     }
 }

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using RestExcuses.Models;
+using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace RestExcuses.Managers
 {
@@ -33,15 +36,37 @@ namespace RestExcuses.Managers
         // henter den sidste entry i databasen
         public Movement GetLastEntry()
         {
-            Movement item = _context.Movement.OrderBy(x => x.timeStamp).Last(); // det nyeste objekt fra databasen hentes
-            if ((DateTime.UtcNow - item.timeStamp).TotalSeconds < 60) // hvis nyeste objekt er over 60 sekunder gammelt, ignoreres det
+            try
             {
-                return item;
+                Movement item = _context.Movement.OrderBy(x => x.timeStamp).Last(); // det nyeste objekt fra databasen hentes
+                if ((DateTime.UtcNow - item.timeStamp).TotalSeconds < 60) // hvis nyeste objekt er over 60 sekunder gammelt, ignoreres det
+                {
+                    return item;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch (InvalidOperationException e)
             {
                 return null;
             }
+            
+        }
+
+        public void DeleteAllMovements()
+        {
+            //string deleteCommand = "DELETE FROM Movement";
+            //SqlConnection connection = new SqlConnection(Secret.ConnectionString);
+            //connection.Open();
+            //SqlCommand command = new SqlCommand(deleteCommand,connection);
+            //int tal = command.ExecuteNonQuery();
+            //connection.Close();
+            //return tal;
+
+            _context.Movement.RemoveRange(_context.Movement);
+            _context.SaveChanges();
         }
 
         public IOrderedEnumerable<CategoryCount> GetHistory() // tæller bevægelser op og returnerer en sorteret liste med dem alle sammen i
