@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace RestExcuses.Managers
 {
     public class MovementsManagerDB
@@ -55,18 +56,19 @@ namespace RestExcuses.Managers
             
         }
 
-        public void DeleteAllMovements()
+        public int DeleteAllMovements()
         {
-            //string deleteCommand = "DELETE FROM Movement";
-            //SqlConnection connection = new SqlConnection(Secret.ConnectionString);
-            //connection.Open();
-            //SqlCommand command = new SqlCommand(deleteCommand,connection);
-            //int tal = command.ExecuteNonQuery();
-            //connection.Close();
-            //return tal;
+            string deleteCommand = "DELETE FROM Movement";
+            SqlConnection connection = new SqlConnection(Secret.ConnectionString);
+            connection.Open();
+            SqlCommand command = new SqlCommand(deleteCommand, connection);
+            int tal = command.ExecuteNonQuery();
+            connection.Close();
+            return tal;
 
-            _context.Movement.RemoveRange(_context.Movement);
-            _context.SaveChanges();
+            //dette burde virke men gør ikke
+            //_context.Movement.RemoveRange(_context.Movement);
+            //_context.SaveChanges();
         }
 
         public IOrderedEnumerable<CategoryCount> GetHistory() // tæller bevægelser op og returnerer en sorteret liste med dem alle sammen i
