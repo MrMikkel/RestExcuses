@@ -43,7 +43,7 @@ namespace RestExcuses.Controllers
             return Ok(result);
         }
         // GET api/<ExcuseController>/5
-        [HttpGet("/api/Excuse/random")]
+        [HttpGet("random")]
         public ExcuseClass GetRandom()
         {
             return  _manager.GetRandomExcuse();
