@@ -58,6 +58,7 @@ namespace RestExcuses.Managers
 
         public int DeleteAllMovements()
         {
+            // Linq virked ikke vi bruget sql commando for at slette alt 
             string deleteCommand = "DELETE FROM Movement";
             SqlConnection connection = new SqlConnection(Secret.ConnectionString);
             connection.Open();
