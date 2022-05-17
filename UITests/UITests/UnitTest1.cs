@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
@@ -135,6 +136,30 @@ namespace UITests
             Assert.IsTrue(text.Contains("Work"));
 
 
+        }
+
+        [TestMethod()]
+        public void TestClearHistory()
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+
+            _driver.Navigate().GoToUrl(url);
+            IWebElement buttonElement1 = wait.Until(d => d.FindElement(By.Id("showCatButton")));
+            buttonElement1.Click();
+
+            IWebElement buttonElement = wait.Until(d => d.FindElement(By.Id("clearButton")));
+            buttonElement.Click();
+
+            IWebElement buttElement = wait.Until(d => d.FindElement(By.Id("clearConfirm")));
+            buttElement.Click();
+
+            Thread.Sleep(2000);
+
+            IWebElement category = wait.Until(d => d.FindElement(By.Id("showCategory")));
+            string text = category.Text;
+            int count = text.Count(x => x == '0');
+
+            Assert.IsTrue(count==5);
         }
     }
     
