@@ -66,6 +66,8 @@ namespace RestExcuses.Managers
             connection.Close();
             return tal;
 
+            //_context.Movement.Where(x => 1 == 1).DeleteFromQuery();
+
             //dette burde virke men gør ikke
             //_context.Movement.RemoveRange(_context.Movement);
             //_context.SaveChanges();
@@ -87,7 +89,7 @@ namespace RestExcuses.Managers
             categoryList.Add(new CategoryCount(useCountLeft, "Work"));
             categoryList.Add(new CategoryCount(useCountFront, "College"));
             categoryList.Add(new CategoryCount(useCountBack, "Party"));
-            categoryList.Add(new CategoryCount(useCountShake, "Self generated"));
+            categoryList.Add(new CategoryCount(useCountShake, "My excuses"));
 
             // sortering af liste
             IOrderedEnumerable<CategoryCount> final = categoryList.OrderByDescending(c => c.Count);

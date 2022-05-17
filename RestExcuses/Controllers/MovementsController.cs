@@ -54,7 +54,7 @@ namespace RestExcuses.Controllers
         [HttpDelete]
         public int Delete()
         {
-             return _manager.DeleteAllMovements();
+           return _manager.DeleteAllMovements();
         }
     }
 }
