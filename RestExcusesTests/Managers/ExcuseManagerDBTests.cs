@@ -115,10 +115,22 @@ namespace RestExcuses.Managers.Tests
             List<CategoryCount> result = orderedList.ToList();
             for (int i = 0; i < result.Count()-2; i++)
             {
-                Assert.IsTrue(result[i].Count>result[i+1].Count);
+                Assert.IsTrue(result[i].Count>=result[i+1].Count);
             }
 
 
+
+        }
+
+        [TestMethod()]
+        public void DeleteAllMovementsTest()
+        {
+            Movement mov = new Movement("left", DateTime.UtcNow);
+            _movements.PostMovement(mov);
+
+            _movements.DeleteAllMovements();
+            Movement newmov = _movements.GetLastEntry();
+            Assert.IsNull(newmov);
 
         }
     }
